@@ -74,9 +74,9 @@ public class Demo1Application implements CommandLineRunner {
 		/*Role admin= new Role("ADMIN", "administrateur");
 		Role patient= new Role("PATIENT", "patient");
 		Role medecin= new Role("MEDECIN", "medecin");
-		roleRepository.save(admin);
+		/*roleRepository.save(admin);
 		roleRepository.save(patient);
-		roleRepository.save(medecin);*/
+		roleRepository.save(medecin);
 		
 		//insertion de 3 utilisateurs
 		String password = passwordEncoder().encode("1111");
@@ -84,18 +84,18 @@ public class Demo1Application implements CommandLineRunner {
 		Collection<Role> lst= new ArrayList<>();
 		lst.add(roleRepository.findById("ADMIN").get());
 		adminUser.setRoles(lst);
-		//userRepository.save(adminUser);
+		userRepository.save(adminUser);
 		String password2 = passwordEncoder().encode("p2222");
 		User pUser= new User("patient1", password2, true);
 		Collection<Role> lst1= new ArrayList<>();
 		lst1.add(roleRepository.findById("PATIENT").get());
 		pUser.setRoles(lst1);
-		//userRepository.save(pUser);
+		userRepository.save(pUser);
 		String password3 = passwordEncoder().encode("m2222");
 		User mUser= new User("medecin1", password3, true);
 		Collection<Role> lst2= new ArrayList<>();
 		lst2.add(roleRepository.findById("MEDECIN").get());
 		mUser.setRoles(lst2);
-		//userRepository.save(mUser);
+		userRepository.save(mUser);*/
 	}
 }

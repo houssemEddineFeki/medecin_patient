@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,18 +33,32 @@ public class UserRestService {
 		return userRepository.findAll();
 	}
 	
+	@RequestMapping(value="/users/{username}", method=RequestMethod.GET)
+	public User findOneUser(@PathVariable String username)
+	{
+		return userRepository.findById(username).get();
+	}
+	
+	@RequestMapping(value="/users/UserRole/{username}", method=RequestMethod.GET)
+	public Collection<Role> findUserRole(@PathVariable String username)
+	{
+		return userRepository.findById(username).get().getRoles();
+	}
+	
 	@RequestMapping(value="/users/delete/{user}", method=RequestMethod.DELETE)
-	public void deleteRole(@PathVariable String user)
+	public void deleteUser(@PathVariable String user)
 	{
 		userRepository.deleteById(user);
 	}
 	
 	@RequestMapping(value="/users/update/{username}", method=RequestMethod.PUT)
-	public User updateRole(@PathVariable(name="username") String username,@RequestBody User u)
+	public User updateUser(@PathVariable(name="username") String username,@RequestBody User u)
 	{
 		u.setUsername(username);
 		return userRepository.save(u);
 	}
+	
+	
 	
 	
 

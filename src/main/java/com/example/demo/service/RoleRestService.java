@@ -32,6 +32,12 @@ public class RoleRestService {
 		return roleRepository.findAll();
 	}
 	
+	@RequestMapping(value="/roles/{role}", method=RequestMethod.GET)
+	public Role findOneRole(@PathVariable String role)
+	{
+		return roleRepository.findById(role).get();
+	}
+	
 	@RequestMapping(value="/roles/delete/{role}", method=RequestMethod.DELETE)
 	public void deleteRole(@PathVariable String role)
 	{
