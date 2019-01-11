@@ -3,9 +3,11 @@ package com.example.demo.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 @Entity
 public class User implements Serializable {
 	@Id
@@ -14,6 +16,10 @@ public class User implements Serializable {
 	private boolean actived;
 	@ManyToMany
 	private Collection<Role> roles;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Patient patient;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Medecin medecin;
 	// Getters, setters and constructors
 	public String getUsername() {
 		return username;
@@ -47,10 +53,24 @@ public class User implements Serializable {
 	public void setActived(boolean actived) {
 		this.actived = actived;
 	}
+	
+	public Patient getPatient() {
+		return patient;
+	}
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+	public Medecin getMedecin() {
+		return medecin;
+	}
+	public void setMedecin(Medecin medecin) {
+		this.medecin = medecin;
+	}
 	public User(String username, String password, boolean actived) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.actived = actived;
 	}
+	
 }
